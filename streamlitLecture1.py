@@ -5,19 +5,19 @@ import plotly.graph_objects as go
 import numpy as np
 import os
 
-st.title('My Dashboard')
-file = st.file_uploader('Upload a file', type=['csv', 'xlsx'])
+path = os.path.join(os.getcwd(), 'Superstore.xlsx')
 
-if file is not None:
-    st.write(file.name)
+df = pd.read_excel(path)
+st.write(df)
 
-    if file.name.endswith('.csv'):
-        df = pd.read_csv(file)
-    elif file.name.endswith('.xlsx'):
-        df = pd.read_excel(file)
-    else:
-        st.write('File type not supported')
-    st.write(df)
-else:
-    st.write('No file uploaded')
+fig = px.bar(df.head(100),x='City', y='Sales',color='Category',width=700,title='maximum and minimum sales in cities')
+st.plotly_chart(fig)
 
+fig = px.bar(df.head(20),x='Customer Name',y='Quantity'
+             ,color='Profit',
+             hover_data=['Discount','Product Name','Sub-Category'],
+             width=1000,title='Product with quantity purchased by Customer')
+st.plotly_chart(fig)
+
+fig =px.pie(df,names='Sub-Category',values='Profit',title='Sub-Categories with profit using pie chart')
+st.plotly_chart(fig)
