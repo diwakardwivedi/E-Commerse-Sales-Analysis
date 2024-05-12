@@ -21,3 +21,5 @@ st.plotly_chart(fig)
 
 fig =px.pie(df,names='Sub-Category',values='Profit',title='Sub-Categories with profit using pie chart')
 st.plotly_chart(fig)
+
+
