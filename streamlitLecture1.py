@@ -4,6 +4,7 @@ import plotly.express as px
 import plotly.graph_objects as go
 import numpy as np
 import os
+import openpyxl
 
 path = os.path.join(os.getcwd(), 'Superstore.xlsx')
 
